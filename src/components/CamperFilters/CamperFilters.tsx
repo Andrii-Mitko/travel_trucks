@@ -78,7 +78,7 @@ export default function CamperFilters({ onApply }: Props) {
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="Kyiv, Ukraine"
+            placeholder="City"
             className={styles.locationInput}
           />
         </div>

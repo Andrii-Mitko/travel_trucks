@@ -12,6 +12,9 @@
   --grey-green: #829b91;
   --olive: #f0f1f1;
   --green-hover: #6d7b75;
+
+   --font-family: "Inter", sans-serif;
+  --second-family: "Manrope", sans-serif;
 }
 
 *,
@@ -29,7 +32,7 @@ html {
 body {
   font-family: var(--font-family);
   color: var(--main);
-  background: var(--white);
+  background-color: var(--white);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,8 +45,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--second-family);
-  font-weight: 700;
+  
+  font-weight: 600;
 }
 
 ul,

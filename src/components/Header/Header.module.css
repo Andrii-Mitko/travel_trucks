@@ -1,15 +1,43 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  position: relative;
+  height: 72px;
   gap: 24px;
-  padding: 12px;
-  border-block-end: 1px solid #ccc;
+  width: 100%;
+  padding: 24px 64px;
+  border-bottom: 1px solid var(--badges);
+  background-color: var(--inputs);
 }
+
 .navigation {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
+  justify-content: center;
+  gap: 32px;
   list-style-type: none;
+}
+
+.link {
+  position: absolute;
+  left: 64px;
+}
+
+.navLink,
+.activeLink {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.navLink {
+  color: var(--main);
+}
+
+.activeLink {
+  color: var(--grey-green);
+  cursor: default;
+  pointer-events: none;
 }

@@ -3,6 +3,8 @@
   gap: 40px;
   padding: 40px 20px;
   align-items: flex-start;
+  height: calc(100dvh - 72px);
+  overflow: hidden;
 }
 
 .list {
