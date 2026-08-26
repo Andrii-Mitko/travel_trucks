@@ -1,0 +1,104 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 312px;
+}
+
+.locationLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 16px;
+  color: var(--gray);
+}
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background-color: var(--white);
+}
+
+.locationIcon {
+  fill: var(--grey-green);
+  flex-shrink: 0;
+}
+
+.locationInput {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.filtersTitle {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--main);
+  margin: 0;
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fieldset legend {
+  font-family: var(--second-family);
+  font-weight: 600;
+  color: var(--gray);
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family);
+  color: var(--main);
+  cursor: pointer;
+}
+
+.radioOption input[type="radio"] {
+  accent-color: var(--grey-green);
+  cursor: pointer;
+}
+
+.searchBtn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--grey-green);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.searchBtn:hover {
+  background: var(--green-hover);
+}
+
+.clearBtn {
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: underline;
+}

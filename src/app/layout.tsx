@@ -1,7 +1,19 @@
 import QueryProvider from "@/components/QueryProvider/QueryProvider";
 import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-family",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--second-family",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -9,12 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body>
         <QueryProvider>
           <Header />
           {children}
-          <Footer />
         </QueryProvider>
       </body>
     </html>
