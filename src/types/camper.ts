@@ -33,6 +33,7 @@ export interface CamperListItem {
   amenities: Amenity[];
   coverImage: string;
   totalReviews: number;
+  description: string;
 }
 
 export interface CamperListResponse {
