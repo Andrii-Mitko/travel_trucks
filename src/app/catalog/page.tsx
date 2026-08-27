@@ -31,11 +31,11 @@ export default function CatalogPage() {
 
   return (
     <div className={styles.container}>
-      <aside>
+      <aside className={styles.sidebar}>
         <CamperFilters onApply={setAppliedFilters} />
       </aside>
 
-      <div>
+      <div className={styles.results}>
         {isLoading && <p>Loading...</p>}
         {isError && <p>Something went wrong. Please try again.</p>}
 

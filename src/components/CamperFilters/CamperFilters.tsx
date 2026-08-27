@@ -72,7 +72,9 @@ export default function CamperFilters({ onApply }: Props) {
             name="location"
             width={20}
             height={20}
-            className={styles.locationIcon}
+            className={`${styles.locationIcon} ${
+              location ? styles.locationIconActive : ""
+            }`}
           />
           <input
             type="text"

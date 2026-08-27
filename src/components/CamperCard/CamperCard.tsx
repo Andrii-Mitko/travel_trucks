@@ -1,13 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
 import Icon from "@/components/Icon/Icon";
-import type { CamperListItem } from "@/types/camper";
-
+import type { IconType } from "react-icons";
+import { BsFuelPump, BsLightningCharge } from "react-icons/bs";
+import { TbManualGearbox } from "react-icons/tb";
+import { GiCaravan } from "react-icons/gi";
+import { FaVanShuttle, FaStar } from "react-icons/fa6";
+import type {
+  CamperListItem,
+  VehicleForm,
+  Engine,
+  Transmission,
+} from "@/types/camper";
 import styles from "./CamperCard.module.css";
 
 interface Props {
   camper: CamperListItem;
   priority?: boolean;
+}
+
+const FORM_ICONS: Record<VehicleForm, IconType> = {
+  alcove: GiCaravan,
+  panel_van: FaVanShuttle,
+  integrated: GiCaravan,
+  semi_integrated: GiCaravan,
+};
+
+const ENGINE_ICONS: Record<Engine, IconType> = {
+  diesel: BsFuelPump,
+  petrol: BsFuelPump,
+  hybrid: BsLightningCharge,
+  electric: BsLightningCharge,
+};
+
+const TRANSMISSION_ICONS: Record<Transmission, IconType> = {
+  automatic: TbManualGearbox,
+  manual: TbManualGearbox,
+};
+
+function BadgeIcon({
+  value,
+  iconMap,
+}: {
+  value: VehicleForm | Engine | Transmission;
+  iconMap: Record<string, IconType>;
+}) {
+  const IconComponent = iconMap[value];
+
+  return <IconComponent size={20} />;
 }
 
 export default function CamperCard({ camper, priority = false }: Props) {
@@ -26,46 +66,48 @@ export default function CamperCard({ camper, priority = false }: Props) {
 
       <div className={styles.info}>
         <div className={styles.headerRow}>
-          <h3 className={styles.namePrice}>{camper.name}</h3>
-          <div className={styles.namePrice}>€{camper.price.toFixed(0)}</div>
+          <h3 className={styles.name}>{camper.name}</h3>
+
+          <span className={styles.price}>€{camper.price.toFixed(0)}</span>
         </div>
 
         <div className={styles.meta}>
-          <div className={styles.metaItem}>
-            <Icon
-              name="Rating"
-              width={16}
-              height={16}
-              className={styles.starIcon}
-            />
+          <span className={styles.metaItem}>
+            <FaStar size={16} className={styles.starIcon} />
             {camper.rating} ({camper.totalReviews} Reviews)
-          </div>
-          <div className={styles.metaItem}>
+          </span>
+
+          <span className={styles.metaItem}>
             <Icon
               name="location"
               width={16}
               height={16}
-              className={styles.metaIcon}
+              className={styles.locationIcon}
             />
             {camper.location}
-          </div>
+          </span>
         </div>
 
         <p className={styles.description}>{camper.description}</p>
 
         <div className={styles.badges}>
-          <div className={styles.badge}>
-            <Icon name={camper.engine} width={20} height={20} />
+          <span className={styles.badge}>
+            <BadgeIcon value={camper.engine} iconMap={ENGINE_ICONS} />
             {camper.engine}
-          </div>
-          <div className={styles.badge}>
-            <Icon name={camper.transmission} width={20} height={20} />
+          </span>
+
+          <span className={styles.badge}>
+            <BadgeIcon
+              value={camper.transmission}
+              iconMap={TRANSMISSION_ICONS}
+            />
             {camper.transmission}
-          </div>
-          <div className={styles.badge}>
-            <Icon name={camper.form} width={20} height={20} />
+          </span>
+
+          <span className={styles.badge}>
+            <BadgeIcon value={camper.form} iconMap={FORM_ICONS} />
             {camper.form.replace("_", " ")}
-          </div>
+          </span>
         </div>
 
         <Link

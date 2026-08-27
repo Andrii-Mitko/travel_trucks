@@ -25,7 +25,6 @@
   flex-direction: column;
   gap: 24px;
   flex: 1;
-  max-width: 100%;
 }
 
 .headerRow {
@@ -34,7 +33,14 @@
   align-items: flex-start;
 }
 
-.namePrice {
+.name {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
+}
+
+.price {
   font-weight: 600;
   font-size: 24px;
   line-height: 1.33;
@@ -57,7 +63,13 @@
 }
 
 .starIcon {
-  --color1: var(--rating);
+  color: var(--rating);
+  flex-shrink: 0;
+}
+
+.locationIcon {
+  fill: var(--main);
+  flex-shrink: 0;
 }
 
 .description {
@@ -84,8 +96,7 @@
   gap: 8px;
   padding: 12px 18px;
   border-radius: 100px;
-  background: var(--badges);
-  mix-blend-mode: multiply;
+  background-color: var(--badges);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -101,8 +112,9 @@
   white-space: nowrap;
   background-color: var(--grey-green);
   color: var(--white);
+  transition: background-color 250ms ease;
 }
 
 .showMoreBtn:hover {
-  background: var(--green-hover);
+  background-color: var(--green-hover);
 }
