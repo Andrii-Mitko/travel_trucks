@@ -8,6 +8,11 @@
   background-color: var(--inputs);
 }
 
+.filtersLoading {
+  color: var(--text);
+  font-size: 14px;
+}
+
 .locationLabel {
   display: flex;
   flex-direction: column;
@@ -137,8 +142,13 @@
 }
 
 .clearBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
   cursor: pointer;
-  text-decoration: underline;
+
   border: 1px solid var(--gray-light);
   border-radius: 200px;
   padding: 16px 32px;

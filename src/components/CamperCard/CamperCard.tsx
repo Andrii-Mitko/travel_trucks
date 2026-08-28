@@ -110,12 +110,7 @@ export default function CamperCard({ camper, priority = false }: Props) {
           </span>
         </div>
 
-        <Link
-          href={`/catalog/${camper.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.showMoreBtn}
-        >
+        <Link href={`/catalog/${camper.id}`} className={styles.showMoreBtn}>
           Show more
         </Link>
       </div>

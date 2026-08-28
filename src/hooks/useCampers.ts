@@ -9,11 +9,21 @@ export function useCampers(
 ) {
   return useInfiniteQuery({
     queryKey: ["campers", filters],
+
     queryFn: ({ pageParam }) =>
-      getCampers({ ...filters, page: pageParam, perPage: PER_PAGE }),
+      getCampers({
+        ...filters,
+        page: pageParam,
+        perPage: PER_PAGE,
+      }),
+
     initialPageParam: 1,
+
+    placeholderData: (previousData) => previousData,
+
     getNextPageParam: (lastPage) => {
       const isLastPage = lastPage.page >= lastPage.totalPages;
+
       return isLastPage ? undefined : lastPage.page + 1;
     },
   });

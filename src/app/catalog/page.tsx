@@ -6,6 +6,8 @@ import CamperCard from "@/components/CamperCard/CamperCard";
 import CamperFilters, {
   AppliedFilters,
 } from "@/components/CamperFilters/CamperFilters";
+import Loader from "@/components/Loader/Loader";
+import EmptyState from "@/components/EmptyState/EmptyState";
 import styles from "./page.module.css";
 
 export default function CatalogPage() {
@@ -18,7 +20,7 @@ export default function CatalogPage() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-    isLoading,
+    isFetching,
     isError,
   } = useCampers({
     location: appliedFilters.location || undefined,
@@ -29,6 +31,14 @@ export default function CatalogPage() {
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
+  const showEmptyState = !isFetching && !isError && campers.length === 0;
+
+  const handleClearFilters = () => {
+    setAppliedFilters({
+      location: "",
+    });
+  };
+
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
@@ -36,27 +46,45 @@ export default function CatalogPage() {
       </aside>
 
       <div className={styles.results}>
-        {isLoading && <p>Loading...</p>}
+        {isFetching && (
+          <Loader
+            title="Loading tracks..."
+            subtitle="Please wait while we fetch the best travel trucks for you"
+          />
+        )}
+
         {isError && <p>Something went wrong. Please try again.</p>}
 
-        <ul className={styles.list}>
-          {campers.map((camper, index) => (
-            <CamperCard
-              key={camper.id}
-              camper={camper}
-              priority={index === 0}
-            />
-          ))}
-        </ul>
+        {showEmptyState && (
+          <EmptyState
+            onClearFilters={handleClearFilters}
+            onViewAll={handleClearFilters}
+          />
+        )}
 
-        {hasNextPage && (
-          <button
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-            className={styles.loadMoreBtn}
-          >
-            {isFetchingNextPage ? "Loading..." : "Load more"}
-          </button>
+        {!showEmptyState && (
+          <>
+            <ul className={styles.list}>
+              {campers.map((camper, index) => (
+                <CamperCard
+                  key={camper.id}
+                  camper={camper}
+                  priority={index === 0}
+                />
+              ))}
+            </ul>
+
+            {hasNextPage && (
+              <button
+                type="button"
+                onClick={() => fetchNextPage()}
+                disabled={isFetchingNextPage}
+                className={styles.loadMoreBtn}
+              >
+                {isFetchingNextPage ? "Loading..." : "Load more"}
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

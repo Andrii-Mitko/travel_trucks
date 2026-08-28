@@ -29,6 +29,7 @@ export const getCamperById = async (
   camperId: string,
 ): Promise<CamperDetails> => {
   const { data } = await api.get<CamperDetails>(`/campers/${camperId}`);
+
   return data;
 };
 

@@ -5,6 +5,7 @@ import { useCampersFilters } from "@/hooks/useCampersFilters";
 import type { VehicleForm, Transmission, Engine } from "@/types/camper";
 import styles from "./CamperFilters.module.css";
 import Icon from "../Icon/Icon";
+import { IoClose } from "react-icons/io5";
 
 export interface AppliedFilters {
   location: string;
@@ -61,7 +62,9 @@ export default function CamperFilters({ onApply }: Props) {
     onApply(EMPTY_FILTERS);
   };
 
-  if (isLoading || !filters) return null;
+  if (isLoading || !filters) {
+    return <p className={styles.filtersLoading}>Loading filters...</p>;
+  }
 
   return (
     <form className={styles.filters} onSubmit={handleSubmit}>
@@ -137,7 +140,7 @@ export default function CamperFilters({ onApply }: Props) {
         Search
       </button>
       <button type="button" onClick={handleClear} className={styles.clearBtn}>
-        ✕ Clear filters
+        <IoClose size={24} /> Clear filters
       </button>
     </form>
   );
