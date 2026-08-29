@@ -5,12 +5,6 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "TravelTrucks — Camper Rental",
-  description:
-    "Rent your dream camper van with TravelTrucks. Browse our catalog, filter by location, engine and transmission, and book online.",
-};
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-family",
@@ -22,6 +16,15 @@ const manrope = Manrope({
   variable: "--second-family",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: {
+    default: "TravelTrucks — Camper Rental",
+    template: "%s | TravelTrucks",
+  },
+  description:
+    "Rent your dream camper van with TravelTrucks. Browse our catalog, filter by location, engine and transmission, and book online.",
+};
 
 export default function RootLayout({
   children,
