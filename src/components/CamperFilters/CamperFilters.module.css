@@ -163,5 +163,5 @@
 }
 
 .clearBtn:hover {
-  border: 1px solid var(--green-hover);
+  border-color: var(--green-hover);
 }

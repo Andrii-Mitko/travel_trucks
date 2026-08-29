@@ -1,225 +1,44 @@
 .page {
   width: 100%;
+  background-color: var(--white);
+  padding: 64px;
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
   width: 100%;
   max-width: 1312px;
   margin: 0 auto;
-  padding: 40px 20px 60px;
 }
 
-.hero {
-  margin-bottom: 24px;
-}
-
-.title {
-  margin-bottom: 8px;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 1.33;
-  color: var(--main);
-}
-
-.meta {
+.topSection {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--main);
+  gap: 24px;
 }
 
-.rating,
-.location {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.starIcon {
-  color: var(--rating);
-}
-
-.location svg {
-  color: var(--main);
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.info {
+.bottomSection {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.price {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 1.33;
-  color: var(--main);
-}
-
-.description {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--text);
-}
-
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 100px;
-  background-color: var(--badges);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--main);
-}
-
-.badge svg {
-  flex-shrink: 0;
-}
-
-.vehicleDetails {
-  padding-top: 24px;
-  border-top: 1px solid var(--gray-light);
-}
-
 .sectionTitle {
-  margin-bottom: 20px;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
   color: var(--main);
 }
 
-.specifications {
+.bottomReviews {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 48px;
 }
 
-.specifications div {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.specifications dt {
-  color: var(--gray);
-}
-
-.specifications dd {
-  text-align: right;
-  color: var(--main);
-}
-
-.bottomSection {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  margin-top: 64px;
-}
-
-.reviewsSection {
-  width: 100%;
-}
-
-.reviews {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.review {
-  padding: 20px;
-  border-radius: 16px;
-  background-color: var(--inputs);
-}
-
-.reviewer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--badges);
-  color: var(--grey-green);
-  font-weight: 600;
-}
-
-.reviewer h3 {
-  margin-bottom: 4px;
-  font-size: 16px;
-}
-
-.reviewRating {
-  display: flex;
-  gap: 2px;
-  color: var(--rating);
-  font-size: 12px;
-}
-
-.review p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text);
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 48px 32px 80px;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .details {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 32px;
-  }
-
+@media (max-width: 768px) {
+  .topSection,
   .bottomSection {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 32px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    padding: 48px 0 80px;
-  }
-
-  .details {
-    grid-template-columns: 600px minmax(0, 1fr);
-    gap: 32px;
-  }
-
-  .bottomSection {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    flex-direction: column;
   }
 }

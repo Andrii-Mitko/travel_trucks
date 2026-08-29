@@ -1,16 +1,17 @@
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 27px;
   width: 100%;
+  max-width: 638px;
 }
 
 .mainImage {
   position: relative;
-  width: 100%;
-  height: 300px;
+  width: 638px;
+  height: 505px;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 17px;
 }
 
 .image {
@@ -19,19 +20,19 @@
 
 .thumbnails {
   display: flex;
-  gap: 8px;
+  gap: 32px;
   overflow-x: auto;
 }
 
 .thumbnail {
   position: relative;
   flex-shrink: 0;
-  width: 80px;
-  height: 64px;
+  width: 135px;
+  height: 145px;
   padding: 0;
   overflow: hidden;
-  border: 2px solid transparent;
-  border-radius: 8px;
+  border: 3px solid transparent;
+  border-radius: 16px;
   cursor: pointer;
 }
 
@@ -41,26 +42,4 @@
 
 .thumbnailImage {
   object-fit: cover;
-}
-
-@media (min-width: 768px) {
-  .mainImage {
-    height: 420px;
-  }
-
-  .thumbnail {
-    width: 96px;
-    height: 72px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .mainImage {
-    height: 480px;
-  }
-
-  .thumbnail {
-    width: 96px;
-    height: 72px;
-  }
 }

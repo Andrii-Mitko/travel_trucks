@@ -27,7 +27,7 @@ export default function CamperGallery({ gallery, camperName }: Props) {
           alt={camperName}
           fill
           priority
-          sizes="(max-width: 767px) 100vw, 50vw"
+          sizes="100vw"
           className={styles.image}
         />
       </div>
@@ -47,7 +47,7 @@ export default function CamperGallery({ gallery, camperName }: Props) {
               src={image.thumb}
               alt={`${camperName} ${index + 1}`}
               fill
-              sizes="100px"
+              sizes="100vw"
               className={styles.thumbnailImage}
             />
           </button>
