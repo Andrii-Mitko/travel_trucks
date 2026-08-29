@@ -82,6 +82,8 @@ export default function BookingForm({ camperId }: Props) {
           >
             <input
               type="text"
+              id="booking-name"
+              name="name"
               placeholder="Name*"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -101,6 +103,8 @@ export default function BookingForm({ camperId }: Props) {
           >
             <input
               type="email"
+              id="booking-email"
+              name="email"
               placeholder="Email*"
               value={email}
               onChange={(event) => setEmail(event.target.value)}

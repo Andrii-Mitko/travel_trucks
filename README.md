@@ -66,20 +66,6 @@ npm run build
 npm start
 ```
 
-## Структура проєкту
-
-src/
-├── app/ # Сторінки (Next.js App Router)
-│ ├── page.tsx # Домашня сторінка
-│ ├── catalog/
-│ │ ├── page.tsx # Каталог кемперів
-│ │ └── [camperId]/
-│ │ └── page.tsx # Сторінка деталей кемпера
-├── components/ # React-компоненти
-├── hooks/ # Кастомні хуки (useCampers, useCampersFilters)
-├── lib/ # API-клієнт
-└── types/ # TypeScript-типи
-
 ## API
 
 Проєкт використовує бекенд [campers-api.goit.study](https://campers-api.goit.study):

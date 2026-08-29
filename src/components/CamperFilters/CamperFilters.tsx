@@ -68,7 +68,7 @@ export default function CamperFilters({ onApply }: Props) {
 
   return (
     <form className={styles.filters} onSubmit={handleSubmit}>
-      <label className={styles.locationLabel}>
+      <label htmlFor="location-filter" className={styles.locationLabel}>
         Location
         <div className={styles.inputWrapper}>
           <Icon
@@ -81,6 +81,8 @@ export default function CamperFilters({ onApply }: Props) {
           />
           <input
             type="text"
+            id="location-filter"
+            name="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="City"
