@@ -5,6 +5,16 @@ import CamperInfo from "@/components/CamperInfo/CamperInfo";
 import CamperReviews from "@/components/CamperReviews/CamperReviews";
 import BookingForm from "@/components/BookingForm/BookingForm";
 import styles from "./page.module.css";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { camperId } = await params;
+  const camper = await getCamperById(camperId);
+  return {
+    title: `${camper.name} — TravelTrucks`,
+    description: camper.description,
+  };
+}
 
 interface Props {
   params: Promise<{ camperId: string }>;
@@ -38,7 +48,6 @@ export default async function CamperDetailsPage({ params }: Props) {
         </section>
 
         <section className={styles.bottomSection}>
-          
           <h2 className={styles.sectionTitle}>Reviews</h2>
           <div className={styles.bottomReviews}>
             <CamperReviews reviews={reviews} />

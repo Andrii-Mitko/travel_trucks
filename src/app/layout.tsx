@@ -3,6 +3,14 @@ import Header from "@/components/Header/Header";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TravelTrucks — Camper Rental",
+  description:
+    "Rent your dream camper van with TravelTrucks. Browse our catalog, filter by location, engine and transmission, and book online.",
+};
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-family",

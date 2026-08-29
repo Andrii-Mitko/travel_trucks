@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TravelTrucks — Camper Rental App
 
-## Getting Started
+Фронтенд вебзастосунку для компанії **TravelTrucks**, яка займається орендою кемперів. Користувач може переглянути каталог кемперів, відфільтрувати їх за локацією, типом кузова, двигуном і трансмісією, переглянути детальну інформацію про обраний кемпер і залишити заявку на бронювання.
 
-First, run the development server:
+🔗 **Демо:** [traveltrucks-ashy.vercel.app](https://traveltrucks-ashy.vercel.app)
+
+## Зміст
+
+- [Основні функції](#основні-функції)
+- [Технології](#технології)
+- [Встановлення та запуск](#встановлення-та-запуск)
+- [Структура проєкту](#структура-проєкту)
+- [API](#api)
+- [Автор](#автор)
+
+## Основні функції
+
+- **Домашня сторінка** — банер із закликом до дії, перехід у каталог
+- **Каталог кемперів**:
+  - список кемперів із пагінацією у форматі Load More (довантаження по 4 картки)
+  - фільтрація за локацією (текстове поле), типом кузова, типом двигуна та типом трансмісії — з урахуванням активних фільтрів під час довантаження
+  - стан "нічого не знайдено" з можливістю скинути фільтри
+- **Сторінка кемпера**:
+  - галерея зображень
+  - повна інформація про кемпер (характеристики, обладнання)
+  - відгуки користувачів із рейтингом за п'ятизірковою шкалою
+  - форма бронювання з валідацією та відправкою на бекенд
+- Лоадери під час усіх асинхронних запитів
+
+## Технології
+
+- [Next.js](https://nextjs.org/) (App Router) + [TypeScript](https://www.typescriptlang.org/)
+- [TanStack Query](https://tanstack.com/query) — `useInfiniteQuery` для пагінації каталогу
+- [Axios](https://axios-http.com/) — HTTP-клієнт
+- CSS Modules — стилізація
+- [React Icons](https://react-icons.github.io/react-icons/) — іконки
+- Деплой — [Vercel](https://vercel.com/)
+
+## Встановлення та запуск
+
+1. Клонуйте репозиторій:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/Andrii-Mitko/travel_trucks.git
+   cd travel_trucks
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Встановіть залежності:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Запустіть проєкт у режимі розробки:
 
-## Learn More
+```bash
+   npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Відкрийте [http://localhost:3000](http://localhost:3000) у браузері.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Для продакшн-збірки:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
+## Структура проєкту
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+src/
+├── app/ # Сторінки (Next.js App Router)
+│ ├── page.tsx # Домашня сторінка
+│ ├── catalog/
+│ │ ├── page.tsx # Каталог кемперів
+│ │ └── [camperId]/
+│ │ └── page.tsx # Сторінка деталей кемпера
+├── components/ # React-компоненти
+├── hooks/ # Кастомні хуки (useCampers, useCampersFilters)
+├── lib/ # API-клієнт
+└── types/ # TypeScript-типи
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API
+
+Проєкт використовує бекенд [campers-api.goit.study](https://campers-api.goit.study):
+
+- `GET /campers` — список кемперів із фільтрацією та пагінацією
+- `GET /campers/filters` — доступні значення фільтрів
+- `GET /campers/{camperId}` — детальна інформація про кемпер
+- `GET /campers/{camperId}/reviews` — відгуки на кемпер
+- `POST /campers/{camperId}/booking-requests` — створення заявки на бронювання
+
+## Автор
+
+**Andrii Mitko**
+GitHub: [@Andrii-Mitko](https://github.com/Andrii-Mitko)
+Портфоліо: [andrii-mitko-brand](https://github.com/Andrii-Mitko/andrii-mitko-brand)
