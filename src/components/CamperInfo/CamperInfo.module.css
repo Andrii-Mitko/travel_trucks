@@ -1,43 +1,23 @@
-.hero {
+.info {
+  display: flex;
+  flex-direction: column;
   max-width: 650px;
+  min-width: 0;
+  gap: 16px;
+}
+
+.hero {
+  border-radius: 16px;
+  padding: 24px;
+  background-color: var(--inputs);
 }
 
 .title {
   margin-bottom: 8px;
+  line-height: 1.33;
   font-weight: 600;
   font-size: 24px;
-  line-height: 1.33;
   color: var(--main);
-}
-
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--main);
-}
-
-.rating,
-.location {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.starIcon {
-  color: var(--rating);
-}
-
-.location svg {
-  color: var(--main);
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 }
 
 .price {
@@ -45,12 +25,23 @@
   font-size: 24px;
   line-height: 1.33;
   color: var(--main);
+  margin-top: 16px;
+  margin-bottom: 24px;
 }
 
 .description {
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: var(--text);
+}
+
+.sectionTitle {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
 }
 
 .badges {
@@ -75,17 +66,12 @@
   flex-shrink: 0;
 }
 
-.vehicleDetails {
-  padding-top: 24px;
-  border-top: 1px solid var(--gray-light);
-}
-
-.sectionTitle {
-  margin-bottom: 20px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--main);
+.dash {
+  display: block;
+  border-radius: 16px;
+  margin: 16px 0;
+  border: 1px solid var(--gray-light);
+  max-width: 602px;
 }
 
 .specifications {
@@ -101,10 +87,18 @@
 }
 
 .specifications dt {
-  color: var(--gray);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--main);
 }
 
 .specifications dd {
-  text-align: right;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
   color: var(--main);
 }

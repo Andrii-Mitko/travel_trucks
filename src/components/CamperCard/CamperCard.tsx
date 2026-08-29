@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Icon from "@/components/Icon/Icon";
 import type { IconType } from "react-icons";
 import { BsFuelPump, BsLightningCharge } from "react-icons/bs";
 import { TbManualGearbox } from "react-icons/tb";
 import { GiCaravan } from "react-icons/gi";
-import { FaVanShuttle, FaStar } from "react-icons/fa6";
+import { FaVanShuttle } from "react-icons/fa6";
 import type {
   CamperListItem,
   VehicleForm,
@@ -13,6 +12,7 @@ import type {
   Transmission,
 } from "@/types/camper";
 import styles from "./CamperCard.module.css";
+import CamperMeta from "../CamperMeta/CamperMeta";
 
 interface Props {
   camper: CamperListItem;
@@ -68,25 +68,14 @@ export default function CamperCard({ camper, priority = false }: Props) {
         <div className={styles.headerRow}>
           <h3 className={styles.name}>{camper.name}</h3>
 
-          <span className={styles.price}>€{camper.price.toFixed(0)}</span>
+          <p className={styles.price}>&euro;{camper.price.toFixed(0)}</p>
         </div>
 
-        <div className={styles.meta}>
-          <span className={styles.metaItem}>
-            <FaStar size={16} className={styles.starIcon} />
-            {camper.rating} ({camper.totalReviews} Reviews)
-          </span>
-
-          <span className={styles.metaItem}>
-            <Icon
-              name="location"
-              width={16}
-              height={16}
-              className={styles.locationIcon}
-            />
-            {camper.location}
-          </span>
-        </div>
+        <CamperMeta
+          rating={camper.rating}
+          totalReviews={camper.totalReviews}
+          location={camper.location}
+        />
 
         <p className={styles.description}>{camper.description}</p>
 
