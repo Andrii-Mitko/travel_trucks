@@ -33,6 +33,19 @@
   position: relative;
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .floatingLabel {
   position: absolute;
   top: -8px;
@@ -84,28 +97,10 @@
   color: var(--button);
 }
 
-.form button {
+.submitButton {
   width: 100%;
   margin-top: 8px;
   padding: 16px 60px;
-  border-radius: 200px;
-  background-color: var(--grey-green);
-  color: var(--white);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  transition: background-color 250ms ease;
-}
-
-.form button:hover {
-  background-color: var(--green-hover);
-}
-
-.form button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
 }
 
 .message {

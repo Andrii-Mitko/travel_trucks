@@ -13,6 +13,7 @@ import type {
 } from "@/types/camper";
 import styles from "./CamperCard.module.css";
 import CamperMeta from "../CamperMeta/CamperMeta";
+import { formatLabel } from "@/lib/format";
 
 interface Props {
   camper: CamperListItem;
@@ -82,7 +83,7 @@ export default function CamperCard({ camper, priority = false }: Props) {
         <div className={styles.badges}>
           <span className={styles.badge}>
             <BadgeIcon value={camper.engine} iconMap={ENGINE_ICONS} />
-            {camper.engine}
+            {formatLabel(camper.engine)}
           </span>
 
           <span className={styles.badge}>
@@ -90,12 +91,12 @@ export default function CamperCard({ camper, priority = false }: Props) {
               value={camper.transmission}
               iconMap={TRANSMISSION_ICONS}
             />
-            {camper.transmission}
+            {formatLabel(camper.transmission)}
           </span>
 
           <span className={styles.badge}>
             <BadgeIcon value={camper.form} iconMap={FORM_ICONS} />
-            {camper.form.replace("_", " ")}
+            {formatLabel(camper.form)}
           </span>
         </div>
 

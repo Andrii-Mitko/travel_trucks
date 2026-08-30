@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { createBookingRequest } from "@/lib/api";
 import styles from "./BookingForm.module.css";
+import Button from "../Button/Button";
 
 interface Props {
   camperId: string;
@@ -76,6 +77,9 @@ export default function BookingForm({ camperId }: Props) {
 
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <div className={styles.field}>
+          <label htmlFor="booking-name" className={styles.srOnly}>
+            Name
+          </label>
           {errors.name && <span className={styles.floatingLabel}>Name</span>}
           <div
             className={`${styles.inputWrapper} ${errors.name ? styles.inputError : ""}`}
@@ -85,18 +89,29 @@ export default function BookingForm({ camperId }: Props) {
               id="booking-name"
               name="name"
               placeholder="Name*"
+              autoComplete="name"
+              required
               value={name}
               onChange={(event) => setName(event.target.value)}
               disabled={isSending}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "booking-name-error" : undefined}
             />
             {errors.name && (
               <FaCircleExclamation className={styles.errorIcon} />
             )}
           </div>
-          {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
+          {errors.name && (
+            <p id="booking-name-error" className={styles.errorMessage}>
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div className={styles.field}>
+          <label htmlFor="booking-email" className={styles.srOnly}>
+            Email
+          </label>
           {errors.email && <span className={styles.floatingLabel}>Email</span>}
           <div
             className={`${styles.inputWrapper} ${errors.email ? styles.inputError : ""}`}
@@ -106,24 +121,34 @@ export default function BookingForm({ camperId }: Props) {
               id="booking-email"
               name="email"
               placeholder="Email*"
+              autoComplete="email"
+              required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               disabled={isSending}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "booking-email-error" : undefined}
             />
             {errors.email && (
               <FaCircleExclamation className={styles.errorIcon} />
             )}
           </div>
           {errors.email && (
-            <p className={styles.errorMessage}>{errors.email}</p>
+            <p id="booking-email-error" className={styles.errorMessage}>
+              {errors.email}
+            </p>
           )}
         </div>
 
-        <button type="submit" disabled={isSending}>
+        <Button type="submit" disabled={isSending} className={styles.submitButton}>
           {isSending ? "Sending..." : "Send"}
-        </button>
+        </Button>
 
-        {message && <p className={styles.message}>{message}</p>}
+        {message && (
+          <p className={styles.message} role="status" aria-live="polite">
+            {message}
+          </p>
+        )}
       </form>
     </section>
   );

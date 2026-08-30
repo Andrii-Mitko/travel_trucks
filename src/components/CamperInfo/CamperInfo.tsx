@@ -1,18 +1,12 @@
-import type { CamperDetails, VehicleForm } from "@/types/camper";
+import type { CamperDetails } from "@/types/camper";
 import styles from "./CamperInfo.module.css";
 import CamperMeta from "../CamperMeta/CamperMeta";
 import CamperBadges from "../CamperBadges/CamperBadges";
+import { formatLabel } from "@/lib/format";
 
 interface Props {
   camper: CamperDetails;
 }
-
-const FORM_LABELS: Record<VehicleForm, string> = {
-  alcove: "Alcove",
-  panel_van: "Panel Van",
-  integrated: "Integrated",
-  semi_integrated: "Semi Integrated",
-};
 
 export default function CamperInfo({ camper }: Props) {
   function formatUnit(value: string): string {
@@ -45,12 +39,12 @@ export default function CamperInfo({ camper }: Props) {
 
         <CamperBadges camper={camper} />
 
-        <div className={styles.dash}></div>
+        <hr className={styles.dash} />
 
         <dl className={styles.specifications}>
           <div>
             <dt>Form</dt>
-            <dd>{FORM_LABELS[camper.form]}</dd>
+            <dd>{formatLabel(camper.form)}</dd>
           </div>
           <div>
             <dt>Length</dt>
@@ -70,9 +64,8 @@ export default function CamperInfo({ camper }: Props) {
           </div>
           <div>
             <dt>Consumption</dt>
-            <div>
-              <dd>{formatConsumption(camper.consumption)}</dd>
-            </div>
+
+            <dd>{formatConsumption(camper.consumption)}</dd>
           </div>
         </dl>
       </div>

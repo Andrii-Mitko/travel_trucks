@@ -1,19 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { CamperDetails, Amenity, VehicleForm } from "@/types/camper";
+import type { CamperDetails, Amenity } from "@/types/camper";
+import { formatLabel } from "@/lib/format";
 import styles from "./CamperBadges.module.css";
 
 interface Props {
   camper: Pick<CamperDetails, "transmission" | "engine" | "form" | "amenities">;
 }
-
-const FORM_LABELS: Record<VehicleForm, string> = {
-  alcove: "Alcove",
-  panel_van: "Panel Van",
-  integrated: "Integrated",
-  semi_integrated: "Semi Integrated",
-};
 
 const AMENITY_LABELS: Record<Amenity, string> = {
   ac: "AC",
@@ -29,10 +23,10 @@ const AMENITY_LABELS: Record<Amenity, string> = {
 
 export default function CamperBadges({ camper }: Props) {
   const allLabels = [
-    camper.transmission,
-    ...camper.amenities.map((a) => AMENITY_LABELS[a]),
-    camper.engine,
-    FORM_LABELS[camper.form],
+    formatLabel(camper.transmission),
+    ...camper.amenities.map((amenity) => AMENITY_LABELS[amenity]),
+    formatLabel(camper.engine),
+    formatLabel(camper.form),
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,21 +36,26 @@ export default function CamperBadges({ camper }: Props) {
   useEffect(() => {
     const container = containerRef.current;
     const measure = measureRef.current;
-    if (!container || !measure) return;
+
+    if (!container || !measure) {
+      return;
+    }
 
     const calculate = () => {
       const containerWidth = container.offsetWidth;
-      const badgeEls = Array.from(measure.children) as HTMLElement[];
+      const badgeElements = Array.from(measure.children) as HTMLElement[];
 
       let usedWidth = 0;
       let count = 0;
       const gap = 8;
 
-      for (const badgeEl of badgeEls) {
-        const badgeWidth = badgeEl.offsetWidth;
+      for (const badgeElement of badgeElements) {
+        const badgeWidth = badgeElement.offsetWidth;
         const nextWidth = usedWidth + (count > 0 ? gap : 0) + badgeWidth;
 
-        if (nextWidth > containerWidth) break;
+        if (nextWidth > containerWidth) {
+          break;
+        }
 
         usedWidth = nextWidth;
         count++;
@@ -77,7 +76,7 @@ export default function CamperBadges({ camper }: Props) {
     <div className={styles.wrapper}>
       <div ref={measureRef} className={styles.measure} aria-hidden="true">
         {allLabels.map((label, index) => (
-          <span key={index} className={styles.badge}>
+          <span key={`${label}-${index}`} className={styles.badge}>
             {label}
           </span>
         ))}
@@ -85,7 +84,7 @@ export default function CamperBadges({ camper }: Props) {
 
       <div ref={containerRef} className={styles.badges}>
         {allLabels.slice(0, visibleCount).map((label, index) => (
-          <span key={index} className={styles.badge}>
+          <span key={`${label}-${index}`} className={styles.badge}>
             {label}
           </span>
         ))}

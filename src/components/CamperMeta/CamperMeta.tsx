@@ -1,5 +1,6 @@
 import { FaStar } from "react-icons/fa6";
 import Icon from "@/components/Icon/Icon";
+import { formatLocation } from "@/lib/format";
 import styles from "./CamperMeta.module.css";
 
 interface Props {
@@ -23,7 +24,7 @@ export default function CamperMeta({ rating, totalReviews, location }: Props) {
           height={16}
           className={styles.locationIcon}
         />
-        {location}
+        {formatLocation(location)}
       </span>
     </div>
   );

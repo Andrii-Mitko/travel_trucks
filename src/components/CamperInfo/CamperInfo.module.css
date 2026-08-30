@@ -67,11 +67,11 @@
 }
 
 .dash {
-  display: block;
-  border-radius: 16px;
+  width: 100%;
+  height: 1px;
   margin: 16px 0;
-  border: 1px solid var(--gray-light);
-  max-width: 602px;
+  border: none;
+  background-color: var(--gray-light);
 }
 
 .specifications {

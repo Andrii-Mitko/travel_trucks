@@ -47,31 +47,6 @@
   color: var(--main);
 }
 
-.meta {
-  display: flex;
-  gap: 16px;
-}
-
-.metaItem {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--main);
-}
-
-.starIcon {
-  color: var(--rating);
-  flex-shrink: 0;
-}
-
-.locationIcon {
-  fill: var(--main);
-  flex-shrink: 0;
-}
-
 .description {
   display: -webkit-box;
   -webkit-line-clamp: 1;

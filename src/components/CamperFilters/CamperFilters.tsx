@@ -6,6 +6,8 @@ import type { VehicleForm, Transmission, Engine } from "@/types/camper";
 import styles from "./CamperFilters.module.css";
 import Icon from "../Icon/Icon";
 import { IoClose } from "react-icons/io5";
+import Button from "../Button/Button";
+import { formatLabel } from "@/lib/format";
 
 export interface AppliedFilters {
   location: string;
@@ -18,29 +20,10 @@ interface Props {
   onApply: (filters: AppliedFilters) => void;
 }
 
-const FORM_LABELS: Record<VehicleForm, string> = {
-  alcove: "Alcove",
-  panel_van: "Panel Van",
-  integrated: "Integrated",
-  semi_integrated: "Semi Integrated",
-};
-
-const ENGINE_LABELS: Record<Engine, string> = {
-  diesel: "Diesel",
-  petrol: "Petrol",
-  hybrid: "Hybrid",
-  electric: "Electric",
-};
-
-const TRANSMISSION_LABELS: Record<Transmission, string> = {
-  automatic: "Automatic",
-  manual: "Manual",
-};
-
 const EMPTY_FILTERS: AppliedFilters = { location: "" };
 
 export default function CamperFilters({ onApply }: Props) {
-  const { data: filters, isLoading } = useCampersFilters();
+  const { data: filters, isLoading, isError, refetch } = useCampersFilters();
 
   const [location, setLocation] = useState("");
   const [form, setForm] = useState<VehicleForm | undefined>(undefined);
@@ -62,14 +45,27 @@ export default function CamperFilters({ onApply }: Props) {
     onApply(EMPTY_FILTERS);
   };
 
-  if (isLoading || !filters) {
+  if (isLoading) {
     return <p className={styles.filtersLoading}>Loading filters...</p>;
+  }
+
+  if (isError || !filters) {
+    return (
+      <div className={styles.filtersError} role="alert">
+        <p>Unable to load filters.</p>
+        <Button type="button" variant="secondary" onClick={() => refetch()}>
+          Try again
+        </Button>
+      </div>
+    );
   }
 
   return (
     <form className={styles.filters} onSubmit={handleSubmit}>
-      <label htmlFor="location-filter" className={styles.locationLabel}>
-        Location
+      <div className={styles.locationField}>
+        <label htmlFor="location-filter" className={styles.locationLabel}>
+          Location
+        </label>
         <div className={styles.inputWrapper}>
           <Icon
             name="location"
@@ -89,9 +85,9 @@ export default function CamperFilters({ onApply }: Props) {
             className={styles.locationInput}
           />
         </div>
-      </label>
+      </div>
 
-      <p className={styles.filtersTitle}>Filters</p>
+      <h2 className={styles.filtersTitle}>Filters</h2>
 
       <fieldset className={styles.fieldset}>
         <legend>Vehicle type</legend>
@@ -103,7 +99,7 @@ export default function CamperFilters({ onApply }: Props) {
               checked={form === value}
               onChange={() => setForm(value)}
             />
-            {FORM_LABELS[value]}
+            {formatLabel(value)}
           </label>
         ))}
       </fieldset>
@@ -118,7 +114,7 @@ export default function CamperFilters({ onApply }: Props) {
               checked={engine === value}
               onChange={() => setEngine(value)}
             />
-            {ENGINE_LABELS[value]}
+            {formatLabel(value)}
           </label>
         ))}
       </fieldset>
@@ -133,17 +129,23 @@ export default function CamperFilters({ onApply }: Props) {
               checked={transmission === value}
               onChange={() => setTransmission(value)}
             />
-            {TRANSMISSION_LABELS[value]}
+            {formatLabel(value)}
           </label>
         ))}
       </fieldset>
 
-      <button type="submit" className={styles.searchBtn}>
+      <Button type="submit" className={styles.searchBtn}>
         Search
-      </button>
-      <button type="button" onClick={handleClear} className={styles.clearBtn}>
-        <IoClose size={24} /> Clear filters
-      </button>
+      </Button>
+      <Button
+        type="button"
+        variant="secondary"
+        onClick={handleClear}
+        className={styles.clearBtn}
+      >
+        <IoClose size={24} />
+        Clear filters
+      </Button>
     </form>
   );
 }

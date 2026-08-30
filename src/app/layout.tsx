@@ -24,6 +24,10 @@ export const metadata: Metadata = {
   },
   description:
     "Rent your dream camper van with TravelTrucks. Browse our catalog, filter by location, engine and transmission, and book online.",
+  applicationName: "TravelTrucks",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

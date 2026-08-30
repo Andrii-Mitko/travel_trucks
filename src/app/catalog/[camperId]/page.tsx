@@ -54,8 +54,8 @@ export default async function CamperDetailsPage({ params }: Props) {
           <CamperInfo camper={camper} />
         </section>
 
-        <section className={styles.bottomSection}>
-          <h2 className={styles.sectionTitle}>Reviews</h2>
+        <section className={styles.bottomSection} aria-labelledby="reviews-title">
+          <h2 id="reviews-title" className={styles.sectionTitle}>Reviews</h2>
           <div className={styles.bottomReviews}>
             <CamperReviews reviews={reviews} />
             <BookingForm camperId={camper.id} />

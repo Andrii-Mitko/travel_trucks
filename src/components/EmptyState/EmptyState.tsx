@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./EmptyState.module.css";
 import { IoClose } from "react-icons/io5";
+import Button from "../Button/Button";
 
 interface Props {
   onClearFilters: () => void;
@@ -18,7 +19,7 @@ export default function EmptyState({ onClearFilters, onViewAll }: Props) {
         className={styles.illustration}
       />
 
-      <h3 className={styles.title}>No campers found</h3>
+      <h2 className={styles.title}>No campers found</h2>
       <p className={styles.subtitle}>
         We couldn&apos;t find any campers that match your filters.
         <br />
@@ -26,16 +27,22 @@ export default function EmptyState({ onClearFilters, onViewAll }: Props) {
       </p>
 
       <div className={styles.actions}>
-        <button
+        <Button
           type="button"
+          variant="secondary"
           onClick={onClearFilters}
           className={styles.clearBtn}
         >
-          <IoClose size={24} /> Clear filters
-        </button>
-        <button type="button" onClick={onViewAll} className={styles.viewAllBtn}>
+          <IoClose size={24} />
+          Clear filters
+        </Button>
+        <Button
+          type="button"
+          onClick={onViewAll}
+          className={styles.viewAllBtn}
+        >
           View all campers
-        </button>
+        </Button>
       </div>
     </div>
   );

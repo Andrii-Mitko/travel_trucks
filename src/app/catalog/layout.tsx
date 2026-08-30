@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Catalog — TravelTrucks",
+  title: "Catalog",
   description:
-    "Browse our full catalog of camper vans, filter by location, form, engine and transmission.",
+    "Browse our camper van catalog. Filter campers by location, vehicle form, engine and transmission.",
 };
 
 export default function CatalogLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return children;
 }
